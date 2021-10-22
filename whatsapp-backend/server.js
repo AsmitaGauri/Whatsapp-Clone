@@ -3,19 +3,14 @@ import express from 'express';
 import mongoose from 'mongoose';
 // TO MAKE MONGODB REALTIME we need pusher and change stream
 import Messages from './dbMessages.js';
-
+import pusher_credentials from './keys';
+import url from './keys';
 import Pusher from 'pusher';
 const app=express();
 const port=process.env.PORT || 9000;
 
-const url='mongodb+srv://asmita:1234@cluster0.tu9hs.mongodb.net/<dbname>?retryWrites=true&w=majority';
-const pusher = new Pusher({
-    appId: '1071684',
-    key: '441374d6fb5e30613e83',
-    secret: 'ceeedfe125ceb809cab0',
-    cluster: 'ap2',
-    encrypted: true
-  });
+const url=url;
+const pusher = new Pusher(pusher_credentials);
 
 
 mongoose.connect(url,{
